@@ -2,33 +2,38 @@ furo: "1.36.0" # the minimal version of furo
 module: github.com/theNorstroem/FuroBaseSpecs
 specDir: "./specs"
 specFormat: "yaml" #set to yaml or json
-dependencies:
-  - "https://github.com/theNorstroem/furoBaseSpecs.git v1.30.0-rc18" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
-
+dependencies: [] #no dependencies :-)
 dependenciesDir: installedSpecs
 muSpec:
   types: # define a set of globs which matches your type definitions
     - "./muspecs/**/*types.yaml"
+    - "./muspecs/google/**/*types.yaml"
     - "./muspecs/*types.yaml"
   enums: # define a set of globs which matches your type definitions
     - "./muspecs/**/*enums.yaml"
+    - "./muspecs/google/**/*enums.yaml"
     - "./muspecs/*enums.yaml"
   services: # define a set of globs which matches your service definitions
     - "./muspecs/**/*services.yaml"
+    - "./muspecs/google/**/*services.yaml"
     - "./muspecs/*services.yaml"
-  goPackageBase: "github.com/theNorstroem/furo-ui5-specs/dist/pb/" #this is used to prefix the go package option
-  javaPackagePrefix: "pro.furo.ui5."
+  goPackageBase: "github.com/theNorstroem/FuroBaseSpecs/dist/pb/" #this is used to prefix the go package option
+  javaPackagePrefix: "pro.furo."
   dir: "muspecs"
   forceSync: true # This will delete specs which are deleted in muSpec, this is very useful during prototyping
-  forceLabels: true # This will overwrite the label and placeholder texts during muSpec2Spec command
-  requestTypeSuffix: "Request" # Suffix for the generated request type specs
+  #forceLabels: true # This will overwrite the label and placeholder texts during muSpec2Spec command
+  #requestTypeSuffix: "Request" # Suffix for the generated request type specs
 commands:
-
+  publishNpm: "scripts/test.sh"
+  buildPb: "scripts/buildPb.sh"
+  cleandist: "scripts/cleanupDist.sh"
 flows:
   default:
     - muSpec2Spec
     - genMessageProtos #we only have messages
     - cleandist
+    - buildPb
+    - genEsModule
 
 build:
   proto:

@@ -16,7 +16,7 @@
     filter_object: 'google.protobuf.Any:9 #Contains the filter Object'
     table_settings: '[] furo.view.TableColumn:10'
     order_by: 'string:11 # sort order, comma separated list of field names'
-    group_by: 'string:11 # group by'
+    group_by: 'string:12 # group by'
 
 
 - type: 'furo.view.FilterItem #Filter object'

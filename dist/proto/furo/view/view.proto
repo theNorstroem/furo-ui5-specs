@@ -118,5 +118,5 @@ message ViewSettings {
     string order_by = 11;
 
     // group by
-    string group_by = 11;
+    string group_by = 12;
 }

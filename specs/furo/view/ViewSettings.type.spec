@@ -215,7 +215,7 @@ fields:
         type: string
         description: group by
         __proto:
-            number: 11
+            number: 12
         __ui: null
         meta:
             default: ""
